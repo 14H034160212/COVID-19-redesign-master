@@ -1,0 +1,5 @@
+include covid/data/*.csv
+include tests/data*.csv
+graft covid/static
+graft covid/templates
+global-exclude *.pyc

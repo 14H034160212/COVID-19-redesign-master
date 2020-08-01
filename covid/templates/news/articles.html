@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<main id="main">
+    <header>
+        <h1>{{ articles_title }}</h1>
+    </header>
+
+    {% for article in articles %}
+    <article style="clear:both">
+        <a href="{{article.hyperlink}}" target="_blank">
+            <img src={{article.image_hyperlink}} alt="article image">
+        </a>
+        <h2>{{article.title}}</h2>
+        <p>{{article.first_para}}</p>
+        <div style="float:left">
+            {% for tag in article.tags %}
+            <div class="btn_b">
+                <a href="{{ tag_urls[tag.name] }}">{{ tag.name }}</a>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="float:right">
+            {% if article.id == show_comments_for_article and article.comments|length > 0 %}
+            <div class="btn_b">
+				{{article.comments|length}} comments
+			</div>
+            {% elif article.comments|length > 0 %}
+            <div class="btn_b">
+                <a href="{{article.view_comment_url}}">{{article.comments|length}} comments</a>
+            </div>
+            {% endif %}
+            <div class="btn_b">
+                <a href="{{article.add_comment_url}}">Comment</a>
+            </div>
+        </div>
+        {% if article.id == show_comments_for_article %}
+        <div style="clear:both">
+            {% for comment in article.comments %}
+                <p>{{comment.comment_text}}, by {{comment.username}}, {{comment.timestamp}}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </article>
+    {% endfor %}
+
+    <footer>
+        <nav style="clear:both">
+            <div style="float:left">
+                {% if first_article_url is not none %}
+                <div class="btn_b">
+                    <a href={{first_article_url}} class="first">&laquo;</a>
+                </div>
+                {% else %}
+				<div class="btn_b">
+                    &laquo;
+				</div>
+                {% endif %}
+                {% if prev_article_url is not none %}
+                <div class="btn_b">
+                     <a href={{prev_article_url}} class="previous">&#8249;</a>
+                </div>
+                {% else %}
+				<div class="btn_b">
+                    &#8249;
+				</div>
+                {% endif %}
+            </div>
+            <div style="float:right">
+                {% if next_article_url is not none %}
+                <div class="btn_b">
+                    <a href={{next_article_url}} class="next">&#8250;</a>
+                </div>
+                {% else %}
+				<div class="btn_b">
+                    &#8250;
+				</div>
+                {% endif %}
+                {% if last_article_url is not none %}
+                <div class="btn_b">
+                    <a href={{last_article_url}} class="last">&raquo;</a>
+                </div>
+                {% else %}
+				<div class="btn_b">
+                    &raquo;
+				</div>
+                {% endif %}
+            </div>
+        </nav>
+    </footer>
+</main>
+{% endblock %}

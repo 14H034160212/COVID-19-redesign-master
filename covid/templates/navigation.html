@@ -1,0 +1,46 @@
+<nav id="nav">
+  <img id="logo" src="{{ url_for('static', filename='covid-19.png') }}" />
+
+  <h2 id="nav-header">
+    {% if 'username' in session %} {{ session['username'] }} is logged in {%
+    endif %}
+  </h2>
+  <a class="btn_a" href="{{ url_for('home_bp.home') }}">Home <svg style="float:right;" class="icon" aria-hidden="true"><use xlink:href="#icon-jia"></use></svg></a>
+  <a class="btn_a" href="{{ url_for('authentication_bp.register') }}"
+    >Register <svg style="float:right;" class="icon" aria-hidden="true"><use xlink:href="#icon-zhuce"></use></svg></a
+  >
+  <a class="btn_a" href="{{ url_for('authentication_bp.login') }}">Login <svg style="float:right;" class="icon" aria-hidden="true"><use xlink:href="#icon-denglu"></use></svg></a>
+  <a class="btn_a" href="{{ url_for('authentication_bp.logout') }}">Logout <svg style="float:right;" class="icon" aria-hidden="true"><use xlink:href="#icon-dengchu"></use></svg></a>
+  <a class="btn_a" href="{{ url_for('news_bp.articles_by_date') }}"
+    >Browse timeline <svg style="float:right;" class="icon" aria-hidden="true"><use xlink:href="#icon-shijianzhou"></use></svg></a
+  >
+
+  <div>
+    <h3 id="sub-nav-header">Browse by tag</h3>
+    {% for key in tag_urls %}
+    <a class="btn_a" href="{{ tag_urls[key] }}">{{ key }}
+    {% if key == 'New Zealand':%}
+      <svg style="float:right;" class="icon" aria-hidden="true"><use xlink:href="#icon-icon_NZxinxilan"></use></svg>
+    {% elif key == 'Health' %}
+      <svg style="float:right;" class="icon" aria-hidden="true"><use xlink:href="#icon-jiankang"></use></svg>
+    {% elif key == 'World' %}
+      <svg style="float:right;" class="icon" aria-hidden="true"><use xlink:href="#icon-WORLD"></use></svg>
+    {% elif key == 'Politics' %}
+      <svg style="float:right;" class="icon" aria-hidden="true"><use xlink:href="#icon-zhengce_"></use></svg>
+    {% elif key == 'Travel' %}
+      <svg style="float:right;" class="icon" aria-hidden="true"><use xlink:href="#icon-lvhang"></use></svg>
+    {% elif key == 'Entertainment' %}
+      <svg style="float:right;" class="icon" aria-hidden="true"><use xlink:href="#icon-yule"></use></svg>
+    {% elif key == 'Business' %}
+      <svg style="float:right;" class="icon" aria-hidden="true"><use xlink:href="#icon-shangyeanli"></use></svg>
+    {% endif %}
+    </a>
+    {% endfor %}
+  </div>
+
+  <div id="nav-footer">
+    <p style="color:rgba(224, 224, 224, 1)">COMPSCI 235 Software Development Methodologies</p>
+    <p style="color:rgba(224, 224, 224, 1)">July 2020</p>
+    <p style="color:rgba(224, 224, 224, 1)">University of Auckland</p>
+  </div>
+</nav>
