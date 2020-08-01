@@ -10,7 +10,7 @@ A Web application that demonstrates use of Python's Flask framework. The applica
 
 ```shell
 $ cd COVID-19
-$ py -3 -m venv venv  // or use "python -m venv venv" 
+$ py -3 -m venv venv  ## or use "python -m venv venv" 
 $ venv\Scripts\activate
 $ pip install -r requirements.txt
 ```
