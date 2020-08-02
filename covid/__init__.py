@@ -11,8 +11,9 @@ from covid.adapters.orm import metadata, map_model_to_tables
 from covid.adapters.unit_of_work import SqlAlchemyUnitOfWork, InMemoryUnitOfWork
 
 import covid.adapters.unit_of_work as uow
+import os
 
-	
+
 def create_app(test_config=None):
     """Construct the core application."""
 
@@ -21,7 +22,9 @@ def create_app(test_config=None):
 
     # Configure the app from configuration-file settings.
     app.config.from_object('config.Config')
-    data_path = 'covid\\adapters\\data'
+    data_path = os.path.join('covid', 'adapters', 'data')
+    print (data_path)
+    #data_path = 'covid\\adapters\\data'
 
     if test_config is not None:
         # Load test configuration, and override any configuration settings.
